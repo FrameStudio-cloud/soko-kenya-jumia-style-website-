@@ -1,0 +1,149 @@
+@import "tailwindcss";
+
+/*
+  Design tokens.
+  Every foreground/background pair below is contrast-computed; the ratio is
+  recorded next to it. "Familiar Jumia, done better" means we keep the orange
+  people recognise, but not the two failures that make Jumia hard to read:
+  white text on the brand orange (2.1:1) and 13px body copy at 2.8:1 grey.
+*/
+@theme {
+  /* ---- Brand ----------------------------------------------------------
+     Jumia's #F68B1E survives only as a FILL. On it, dark ink is 7.15:1.
+     Anything white-on-orange needs the darker #C2410C, which is 5.18:1. */
+  --color-brand-fill: #f68b1e;      /* decorative fill, dark ink only  */
+  --color-brand: #c2410c;            /* actionable, white ink 5.18:1    */
+  --color-brand-hover: #9a3412;      /* 7.06:1 with white               */
+  --color-brand-tint: #fff4e6;       /* quiet wash behind brand chrome  */
+  --color-brand-edge: #fbd9a5;       /* hairline on tint                */
+
+  /* ---- Ink ------------------------------------------------------------
+     On #ffffff: primary 18.4:1, secondary 7.26:1, muted 4.72:1.
+     Muted clears AA for body copy; it is never used below 16px. */
+  --color-ink: #1a1a1a;              /* 18.4:1 */
+  --color-ink-2: #56565e;            /* 7.26:1 */
+  --color-ink-3: #6e6e78;            /* 4.72:1 — AA floor, body size only */
+
+  /* ---- Surfaces ------------------------------------------------------- */
+  --color-canvas: #f7f7f8;           /* page behind cards */
+  --color-card: #ffffff;
+  --color-hairline: #e4e4e7;
+  --color-hairline-2: #f0f0f2;       /* internal dividers */
+
+  /* ---- Signal ---------------------------------------------------------
+     White on each: discount 5.31:1, sale 4.83:1, alert 5.9:1.
+     Colour is never the only carrier — each is paired with a text label. */
+  --color-discount: #0a7d0a;         /* 5.31:1 */
+  --color-discount-tint: #e8f6e8;
+  --color-sale: #d92d20;             /* 4.83:1 */
+  --color-sale-tint: #fdecea;
+  --color-alert: #b54708;            /* 5.90:1 */
+  --color-alert-tint: #fef3e6;
+  --color-info: #1d4ed8;             /* 7.03:1 */
+  --color-info-tint: #e8eefc;
+
+  /* ---- Type -----------------------------------------------------------
+     The one deviation from Jumia: 16px body, not 13px. A marketplace is
+     read at arm's length on a phone in daylight; 13px grey fails there. */
+  --text-2xs: 0.6875rem;             /* 11px — badges only, never prose   */
+  --text-xs: 0.75rem;                /* 12px — metadata, labels           */
+  --text-sm: 0.875rem;               /* 14px — secondary                 */
+  --text-base: 1rem;                 /* 16px — body floor                */
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+
+  /* ---- Space: 4px base ------------------------------------------------ */
+  --spacing: 0.25rem;
+
+  /* ---- Radius --------------------------------------------------------- */
+  --radius-card: 0.5rem;
+  --radius-control: 0.375rem;
+  --radius-pill: 999px;
+
+  /* ---- Elevation: two steps only. Jumia uses a dozen box-shadows for
+     what is really one card and one floating bar. ------------------------ */
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.06);
+  --shadow-raise: 0 4px 16px rgb(0 0 0 / 0.1);
+}
+
+/* ---- Base ------------------------------------------------------------ */
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--color-canvas);
+    color: var(--color-ink);
+    font-family:
+      ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+      "Helvetica Neue", Arial, sans-serif;
+    font-size: var(--text-base);
+    line-height: 1.5;
+    /* Never let a tap through to text selection or the 300ms delay. */
+    -webkit-tap-highlight-color: transparent;
+    text-rendering: optimizeLegibility;
+  }
+
+  /*
+    Focus is never removed, only restyled. 2px brand ring + 2px offset so it
+    survives on both white cards and the orange brand bar.
+  */
+  :focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* Images must never blow out a card's fixed ratio. */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* iOS zooms any input under 16px on focus. Body copy is already 16px. */
+  input,
+  select,
+  textarea {
+    font-size: max(16px, 1rem);
+    font-family: inherit;
+  }
+
+  button {
+    font-family: inherit;
+  }
+}
+
+@layer utilities {
+  /* Honour the OS preference everywhere, without a per-component toggle. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Jumia truncates product titles to 2 lines everywhere. Same idea, but we
+     clamp once here instead of shipping a line-clamp plugin. */
+  .clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Content that must never create a sideways scrollbar on a 360px phone. */
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}

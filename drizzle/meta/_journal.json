@@ -1,0 +1,76 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1791571424439,
+      "tag": "0000_silent_talon",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1791571983428,
+      "tag": "0001_lively_jackpot",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1791572100000,
+      "tag": "0002_rename_search_vector",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1791572200000,
+      "tag": "0003_product_specs_and_tags",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1791572300000,
+      "tag": "0004_fix_search_vector",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1791572400000,
+      "tag": "0005_carts_and_reservations",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1791572500000,
+      "tag": "0006_stock_reserved_counter",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1791572600000,
+      "tag": "0007_checkout_support",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1791892800000,
+      "tag": "0008_seller_suspension",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1791892900000,
+      "tag": "0009_admin_audit_log",
+      "breakpoints": true
+    }
+  ]
+}

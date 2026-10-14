@@ -1,0 +1,39 @@
+{
+  "name": "marketplace",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "db:migrate": "tsx scripts/apply-migration.ts",
+    "db:seed": "tsx scripts/seed.ts",
+    "db:seed:orders": "tsx scripts/seed-demo-orders.ts",
+    "db:images": "tsx scripts/generate-product-images.ts",
+    "db:status": "tsx scripts/check-migrations.ts",
+    "test": "tsx scripts/run-all.ts"
+  },
+  "dependencies": {
+    "drizzle-orm": "^0.45.4",
+    "next": "^16.4.0",
+    "pg": "^8.23.1",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  },
+  "devDependencies": {
+    "@neondatabase/serverless": "^1.2.0",
+    "@tailwindcss/postcss": "^4.0.0",
+    "@types/node": "^22.0.0",
+    "@types/pg": "^8.23.1",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "dotenv": "^18.0.7",
+    "drizzle-kit": "^0.31.11",
+    "tailwindcss": "^4.0.0",
+    "tsx": "^4.23.15",
+    "typescript": "^5.7.0"
+  }
+}

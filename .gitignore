@@ -1,0 +1,32 @@
+# Dependencies
+node_modules
+.pnp
+.pnp.js
+
+# Next.js
+.next
+out
+next-env.d.ts
+*.tsbuildinfo
+
+# Neon
+# .neon holds project/branch IDs — harmless, but keep it local with the creds.
+.neon
+# .env.local holds DATABASE_URL and S3 keys. NEVER commit this.
+.env
+.env.local
+.env*.local
+
+# Testing
+coverage
+
+# Misc
+.DS_Store
+*.pem
+npm-debug.log*
+yarn-error.log*
+.vercel
+
+# Local tooling
+.playwright-mcp
+
